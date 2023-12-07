@@ -43,9 +43,9 @@ namespace listBox
 
         private void btnCategoriasDeCesta_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form4 form4 = new Form4();
             this.Hide();
-            form2.Show();
+            form4.Show();
 
         }
 
@@ -71,6 +71,13 @@ namespace listBox
             lsvItens.Columns.Add("ID");
             lsvItens.Columns.Add("Nome");
             lsvItens.Columns.Add("Preço");
+        }
+
+        private void btnListaDeProdutos_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            this.Hide();
+            form2.Show();
         }
     }
 }
