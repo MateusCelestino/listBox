@@ -31,7 +31,7 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.totalPrice = new System.Windows.Forms.NumericUpDown();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnListaDeProdutos = new System.Windows.Forms.Button();
@@ -39,7 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lsvItens2 = new System.Windows.Forms.ListView();
             this.listView1 = new System.Windows.Forms.ListView();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -70,17 +70,17 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Total";
             // 
-            // numericUpDown1
+            // totalPrice
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(475, 222);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDown1.TabIndex = 8;
+            this.totalPrice.Location = new System.Drawing.Point(475, 222);
+            this.totalPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.totalPrice.Name = "totalPrice";
+            this.totalPrice.Size = new System.Drawing.Size(80, 20);
+            this.totalPrice.TabIndex = 8;
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(217, 46);
+            this.btnAdicionar.Location = new System.Drawing.Point(254, 47);
             this.btnAdicionar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(61, 21);
@@ -91,7 +91,7 @@
             // 
             // btnRemover
             // 
-            this.btnRemover.Location = new System.Drawing.Point(217, 72);
+            this.btnRemover.Location = new System.Drawing.Point(254, 71);
             this.btnRemover.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(61, 21);
@@ -102,7 +102,7 @@
             // 
             // btnListaDeProdutos
             // 
-            this.btnListaDeProdutos.Location = new System.Drawing.Point(163, 262);
+            this.btnListaDeProdutos.Location = new System.Drawing.Point(188, 262);
             this.btnListaDeProdutos.Margin = new System.Windows.Forms.Padding(2);
             this.btnListaDeProdutos.Name = "btnListaDeProdutos";
             this.btnListaDeProdutos.Size = new System.Drawing.Size(127, 23);
@@ -163,7 +163,7 @@
             this.Controls.Add(this.btnCategoriasDeCesta);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnAdicionar);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.totalPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
@@ -171,7 +171,7 @@
             this.Name = "Form2";
             this.Text = "Gestas da Prima";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -183,7 +183,7 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown totalPrice;
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnListaDeProdutos;

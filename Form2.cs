@@ -52,6 +52,7 @@ namespace listBox
             InitializeComponent();
             ConfiguraListView();
             AtualizaItensListView();
+            
         }
         void AtualizaItensListView()
         {
@@ -83,9 +84,21 @@ namespace listBox
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            double totalPrice = 0;
             txtNome.Focus();
             btnAdicionar.Enabled = false;
             btnRemover.Enabled = false;
+
+            foreach (ListViewItem outerItem in listView1.Items)
+            {
+                ListView innerListView1 = (ListView)outerItem.SubItems[1].Tag;
+            }
+
+            foreach (ListViewItem innerListView1 in lsvItens2.SelectedItems)
+            {
+                double price = double.Parse(innerListView1.SubItems[0].Text);
+                totalPrice += price;
+            }
             
 
         }
