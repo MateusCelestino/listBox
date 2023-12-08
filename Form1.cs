@@ -46,7 +46,7 @@ namespace listBox
             Form4 form4 = new Form4();
             this.Hide();
             form4.Show();
-
+    
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -74,6 +74,14 @@ namespace listBox
         }
 
         private void btnListaDeProdutos_Click(object sender, EventArgs e)
+        {
+            
+            Form3 form3 = new Form3();
+            this.Hide();
+            form3.Show();
+        }
+
+        private void btnCesta_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
             this.Hide();

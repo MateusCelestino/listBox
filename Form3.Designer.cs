@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.grbFormulario = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.numPreco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numID)).BeginInit();
             this.grbFormulario.SuspendLayout();
@@ -59,22 +59,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Pesquisar";
             // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(8, 68);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(186, 185);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(8, 47);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 20);
+            this.textBox1.Size = new System.Drawing.Size(298, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -157,27 +147,29 @@
             // 
             // btnNovoItems
             // 
-            this.btnNovoItems.Location = new System.Drawing.Point(218, 265);
+            this.btnNovoItems.Location = new System.Drawing.Point(539, 263);
             this.btnNovoItems.Margin = new System.Windows.Forms.Padding(2);
             this.btnNovoItems.Name = "btnNovoItems";
             this.btnNovoItems.Size = new System.Drawing.Size(68, 24);
             this.btnNovoItems.TabIndex = 8;
             this.btnNovoItems.Text = "Novo items";
             this.btnNovoItems.UseVisualStyleBackColor = true;
+            this.btnNovoItems.Click += new System.EventHandler(this.btnNovoItems_Click);
             // 
             // btnApagar
             // 
-            this.btnApagar.Location = new System.Drawing.Point(290, 265);
+            this.btnApagar.Location = new System.Drawing.Point(611, 263);
             this.btnApagar.Margin = new System.Windows.Forms.Padding(2);
             this.btnApagar.Name = "btnApagar";
             this.btnApagar.Size = new System.Drawing.Size(68, 24);
             this.btnApagar.TabIndex = 10;
             this.btnApagar.Text = "Apagar";
             this.btnApagar.UseVisualStyleBackColor = true;
+            this.btnApagar.Click += new System.EventHandler(this.btnApagar_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(362, 265);
+            this.btnEditar.Location = new System.Drawing.Point(682, 263);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(68, 24);
@@ -206,18 +198,30 @@
             this.grbFormulario.Controls.Add(this.label3);
             this.grbFormulario.Controls.Add(this.txtNome);
             this.grbFormulario.Controls.Add(this.label4);
-            this.grbFormulario.Location = new System.Drawing.Point(206, 47);
+            this.grbFormulario.Location = new System.Drawing.Point(504, 47);
             this.grbFormulario.Name = "grbFormulario";
             this.grbFormulario.Size = new System.Drawing.Size(237, 104);
             this.grbFormulario.TabIndex = 13;
             this.grbFormulario.TabStop = false;
             this.grbFormulario.Text = "Formulario";
             // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(8, 75);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(473, 185);
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 308);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(764, 308);
             this.Controls.Add(this.grbFormulario);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnEditar);
@@ -226,9 +230,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form3";
-            this.Text = "Gestas da Prima";
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPreco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numID)).EndInit();
@@ -238,12 +242,13 @@
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.ListView listView1;
+
         private System.Windows.Forms.GroupBox grbFormulario;
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtNome;

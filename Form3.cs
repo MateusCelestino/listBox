@@ -44,10 +44,35 @@ namespace listBox
     new Produto { Id = 28, Nome = "Garrafa de Champagne", Preco = 49.5m },
     new Produto { Id = 29, Nome = "Kit de Pintura", Preco = 20.99m },
     new Produto { Id = 30, Nome = "Copo Térmico", Preco = 15.0m }
+    
 };
         public Form3()
         {
             InitializeComponent();
+            AtualizaItensListView();
+            ConfiguraListView();
+        }
+       void AtualizaItensListView()
+        {
+            
+            listView1.Items.Clear();
+
+            
+            foreach (Produto produto in lista_produtos)
+            {
+                AdicionarItemListView(produto);
+            }
+        }
+        void AdicionarItemListView(Produto produto)
+        {
+            // Cria um item vazio
+            ListViewItem item = new ListViewItem(produto.Id.ToString());
+
+            item.SubItems.Add(produto.Nome);
+            item.SubItems.Add(produto.Preco.ToString("c"));
+
+            // Adiciona o item na listView
+            listView1.Items.Add(item);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -85,6 +110,38 @@ namespace listBox
             {
                 return;
             }
+            int id = ((int)numID.Value);
+            Produto? produto = BuscaProdutoId(id);
+
+            if (produto != null)
+            {
+                int index = lista_produtos.FindIndex(item => object.Equals(item, produto));
+                Produto produto_editado = new Produto
+                    { Id = (int)numID.Value, Nome = txtNome.Text, Preco = numPreco.Value };
+                lista_produtos[index] = produto_editado;
+            }
+            else
+            {
+                    Produto novo_produto = new Produto
+                    {
+                        Id = (int)numID.Value,
+                        Nome = txtNome.Text,
+                        Preco = numPreco.Value
+                    };
+                    lista_produtos.Add(novo_produto);
+
+            }
+            FechaFormulario();
+            AtualizaItensListView();
+        }
+        private Produto? BuscaProdutoId(int Id)
+        {
+            Produto produto = lista_produtos.Find(prod => prod.Id == Id);
+
+            if (produto.Id == 0)
+                return null;
+
+            return produto;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -94,7 +151,7 @@ namespace listBox
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            
             foreach (ListViewItem item in listView1.SelectedItems)
             {
                 int id = int.Parse(item.Text);
@@ -104,21 +161,17 @@ namespace listBox
                 numID.Value = produto.Id;
                 txtNome.Text = produto.Nome;
                 numPreco.Value = produto.Preco;
-
-                // Para o laço de repetição.
+                
                 break;
             }
 
             if (numID.Value == 0)
                 return;
-
-            // Mostrar o formulário
+            
             grbFormulario.Visible = true;
-
-            // Foca no campo Nome
+            
             txtNome.Focus();
-
-            // Desabilitar o botão Novo Item
+            
             btnNovoItems.Enabled = false;
             btnEditar.Enabled = false;
             btnApagar.Enabled = false;
@@ -135,11 +188,60 @@ namespace listBox
             listView1.Columns.Add("ID");
             listView1.Columns.Add("Nome");
             listView1.Columns.Add("Preço");
+            AtualizaItensListView();
+        
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            //FechaFormulario();
+            FechaFormulario();
+        }
+        void FechaFormulario()
+        {
+            // Esconde o formulário
+            grbFormulario.Visible = false;
+
+            // Habilita os botões
+            btnNovoItems.Enabled = true;
+            btnEditar.Enabled = true;
+            btnApagar.Enabled = true;
+
+            // Limpa os campos
+            txtNome.Clear();
+            numID.Value = 0;
+            numPreco.Value = 0;
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.SelectedItems)
+            {
+                int id = int.Parse(item.Text);
+                Produto produto = lista_produtos.Find(prod => prod.Id == id);
+                lista_produtos.Remove(produto);
+            }
+
+            AtualizaItensListView();
+        }
+
+        private void btnNovoItems_Click(object sender, EventArgs e)
+        {
+            grbFormulario.Visible = true;
+            txtNome.Focus();
+            btnNovoItems.Enabled = false;
+            btnEditar.Enabled = false;
+            btnApagar.Enabled = false;
+            numID.Value = PegarUltimoIdLista() + 1;
+        }
+        private int PegarUltimoIdLista()
+        {
+            return lista_produtos.Max(produto => produto.Id);
+        }
+
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
     }
