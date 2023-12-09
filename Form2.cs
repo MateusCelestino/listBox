@@ -144,11 +144,15 @@ namespace listBox
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in lsvProdutos.SelectedItems)
+            foreach (ListViewItem item in lsvCestaMontada.SelectedItems)
             {
                 int id = int.Parse(item.Text);
-                Produto produto = lista.lista_produtos.Find(prod => prod.Id == id);
+                Produto produto = lista.Lista_cesta.Find(prod => prod.Id == id);
                 lista.lista_produtos.Remove(produto);
+
+                lista.Lista_cesta.Remove(produto);
+                lista.lista_produtos.Add(produto);
+                CalcularCesta(produto);
 
             }
 
@@ -159,7 +163,8 @@ namespace listBox
         string CalcularCesta(Produto produto)
         {
             decimal somaDosValores = 0;
-            foreach (Produto item in lista.lista_produtos)
+            foreach (Produto item in lista.Lista_cesta
+                     )
             {
                 somaDosValores += item.Preco;
             }
