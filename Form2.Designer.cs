@@ -31,15 +31,14 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.totalPrice = new System.Windows.Forms.NumericUpDown();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnListaDeProdutos = new System.Windows.Forms.Button();
             this.btnCategoriasDeCesta = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.lsvItens2 = new System.Windows.Forms.ListView();
-            this.listView1 = new System.Windows.Forms.ListView();
-            ((System.ComponentModel.ISupportInitialize)(this.totalPrice)).BeginInit();
+            this.lsvCestaMontada = new System.Windows.Forms.ListView();
+            this.lsvProdutos = new System.Windows.Forms.ListView();
+            this.CalcularCesta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtNome
@@ -69,14 +68,6 @@
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Total";
-            // 
-            // totalPrice
-            // 
-            this.totalPrice.Location = new System.Drawing.Point(475, 222);
-            this.totalPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.totalPrice.Name = "totalPrice";
-            this.totalPrice.Size = new System.Drawing.Size(80, 20);
-            this.totalPrice.TabIndex = 8;
             // 
             // btnAdicionar
             // 
@@ -132,63 +123,68 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Lista de Produtos";
             // 
-            // lsvItens2
+            // lsvCestaMontada
             // 
-            this.lsvItens2.HideSelection = false;
-            this.lsvItens2.Location = new System.Drawing.Point(366, 47);
-            this.lsvItens2.Name = "lsvItens2";
-            this.lsvItens2.Size = new System.Drawing.Size(189, 169);
-            this.lsvItens2.TabIndex = 15;
-            this.lsvItens2.UseCompatibleStateImageBehavior = false;
+            this.lsvCestaMontada.HideSelection = false;
+            this.lsvCestaMontada.Location = new System.Drawing.Point(366, 47);
+            this.lsvCestaMontada.Name = "lsvCestaMontada";
+            this.lsvCestaMontada.Size = new System.Drawing.Size(189, 169);
+            this.lsvCestaMontada.TabIndex = 15;
+            this.lsvCestaMontada.UseCompatibleStateImageBehavior = false;
             // 
-            // listView1
+            // lsvProdutos
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(8, 72);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(205, 170);
-            this.listView1.TabIndex = 16;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.lsvProdutos.HideSelection = false;
+            this.lsvProdutos.Location = new System.Drawing.Point(8, 72);
+            this.lsvProdutos.Name = "lsvProdutos";
+            this.lsvProdutos.Size = new System.Drawing.Size(205, 170);
+            this.lsvProdutos.TabIndex = 16;
+            this.lsvProdutos.UseCompatibleStateImageBehavior = false;
+            // 
+            // CalcularCesta
+            // 
+            this.CalcularCesta.Location = new System.Drawing.Point(465, 220);
+            this.CalcularCesta.Name = "CalcularCesta";
+            this.CalcularCesta.Size = new System.Drawing.Size(89, 20);
+            this.CalcularCesta.TabIndex = 17;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 292);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.lsvItens2);
+            this.Controls.Add(this.CalcularCesta);
+            this.Controls.Add(this.lsvProdutos);
+            this.Controls.Add(this.lsvCestaMontada);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnListaDeProdutos);
             this.Controls.Add(this.btnCategoriasDeCesta);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnAdicionar);
-            this.Controls.Add(this.totalPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Gestas da Prima";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.totalPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TextBox CalcularCesta;
+
+        private System.Windows.Forms.ListView lsvProdutos;
 
         #endregion
 
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown totalPrice;
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnListaDeProdutos;
         private System.Windows.Forms.Button btnCategoriasDeCesta;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView lsvItens2;
+        private System.Windows.Forms.ListView lsvCestaMontada;
     }
 }

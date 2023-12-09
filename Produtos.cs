@@ -7,49 +7,112 @@ using System.Threading.Tasks;
 
 namespace listBox
 {
-    struct Produtos
+    struct Produto
     {
         public int Id;
         public string Nome;
         public decimal Preco; 
     }
 
+    struct ItemsCesta
+    {
+        public int Id;
+        public int Produto;
+        public int Quantidade;
+    }
+
     class Listas
     {
-
         public List<Produto> lista_produtos = new List<Produto>
         {
-            new Produto { Id = 1, Nome = "Chocolate", Preco = 19.9m },
-            new Produto { Id = 2, Nome = "Vinho", Preco = 29.5m },
-            new Produto { Id = 3, Nome = "Flores", Preco = 15.0m },
-            new Produto { Id = 4, Nome = "Cartão de Aniversário", Preco = 5.99m },
-            new Produto { Id = 5, Nome = "Cesta de Frutas", Preco = 25.0m },
-            new Produto { Id = 6, Nome = "Perfume", Preco = 49.99m },
-            new Produto { Id = 7, Nome = "Caneca Personalizada", Preco = 12.5m },
-            new Produto { Id = 8, Nome = "Bolo Decorado", Preco = 34.99m },
-            new Produto { Id = 9, Nome = "Chá Especial", Preco = 9.0m },
-            new Produto { Id = 10, Nome = "Kit de Velas Perfumadas", Preco = 18.75m },
-            new Produto { Id = 11, Nome = "Livro de Poesias", Preco = 22.8m },
-            new Produto { Id = 12, Nome = "Bouquet de Balões", Preco = 8.5m },
-            new Produto { Id = 13, Nome = "Kit de Massagem", Preco = 42.0m },
-            new Produto { Id = 14, Nome = "Caneta de Luxo", Preco = 30.25m },
-            new Produto { Id = 15, Nome = "Café Gourmet", Preco = 14.99m },
-            new Produto { Id = 16, Nome = "Kit de Maquiagem", Preco = 55.0m },
-            new Produto { Id = 17, Nome = "Almofada Personalizada", Preco = 16.5m },
-            new Produto { Id = 18, Nome = "Queijo Especial", Preco = 27.75m },
-            new Produto { Id = 19, Nome = "Relógio Decorativo", Preco = 38.0m },
-            new Produto { Id = 20, Nome = "Jogo de Toalhas Bordadas", Preco = 19.0m },
-            new Produto { Id = 21, Nome = "Conjunto de Taças", Preco = 32.5m },
-            new Produto { Id = 22, Nome = "Caixa de Bombons Finos", Preco = 23.49m },
-            new Produto { Id = 23, Nome = "Cesta de Café da Manhã", Preco = 44.99m },
-            new Produto { Id = 24, Nome = "Kit de Plantas Ornamentais", Preco = 28.0m },
-            new Produto { Id = 25, Nome = "Porta-Retrato Personalizado", Preco = 10.0m },
-            new Produto { Id = 26, Nome = "Sabonetes Artesanais", Preco = 13.25m },
-            new Produto { Id = 27, Nome = "Kit de Jogos de Tabuleiro", Preco = 36.75m },
-            new Produto { Id = 28, Nome = "Garrafa de Champagne", Preco = 49.5m },
-            new Produto { Id = 29, Nome = "Kit de Pintura", Preco = 20.99m },
-            new Produto { Id = 30, Nome = "Copo Térmico", Preco = 15.0m }
+            new Produto { Id = 1, Nome = "Café", Preco = 2.5m },
+            new Produto { Id = 2, Nome = "Pão", Preco = 4.0m },
+            new Produto { Id = 3, Nome = "Leite", Preco = 3.0m },
+            new Produto { Id = 4, Nome = "Cereal", Preco = 5.5m },
+            new Produto { Id = 5, Nome = "Frutas", Preco = 6.8m },
+            new Produto { Id = 6, Nome = "Iogurte", Preco = 3.2m },
+            new Produto { Id = 7, Nome = "Ovos", Preco = 7.5m },
+            new Produto { Id = 8, Nome = "Queijo", Preco = 5.0m },
+            new Produto { Id = 9, Nome = "Manteiga", Preco = 2.0m },
+            new Produto { Id = 10, Nome = "Geleia", Preco = 4.5m },
+            new Produto { Id = 11, Nome = "Croissant", Preco = 3.8m },
+            new Produto { Id = 12, Nome = "Suco de Laranja", Preco = 4.9m },
+            new Produto { Id = 13, Nome = "Panquecas", Preco = 6.2m },
+            new Produto { Id = 14, Nome = "Granola", Preco = 5.7m },
+            new Produto { Id = 15, Nome = "Café com Leite", Preco = 3.7m },
+            new Produto { Id = 16, Nome = "Waffles", Preco = 4.5m },
+            new Produto { Id = 17, Nome = "Torrada", Preco = 2.0m },
+            new Produto { Id = 18, Nome = "Presunto", Preco = 5.3m },
+            new Produto { Id = 19, Nome = "Cappuccino", Preco = 4.2m },
+            new Produto { Id = 20, Nome = "Smoothie", Preco = 6.5m },
+            new Produto { Id = 21, Nome = "Bolo de Café", Preco = 8.0m },
+            new Produto { Id = 22, Nome = "Cuscuz", Preco = 3.4m },
+            new Produto { Id = 23, Nome = "Muffin", Preco = 2.8m },
+            new Produto { Id = 24, Nome = "Aveia", Preco = 4.3m },
+            new Produto { Id = 25, Nome = "Sanduíche de Bacon e Ovo", Preco = 7.8m },
+            new Produto { Id = 26, Nome = "Chá", Preco = 2.3m },
+            new Produto { Id = 27, Nome = "Batata Doce Assada", Preco = 5.1m },
+            new Produto { Id = 28, Nome = "Mel", Preco = 3.5m },
+            new Produto { Id = 29, Nome = "Salada de Frutas", Preco = 6.0m },
+            new Produto { Id = 30, Nome = "Pão de Banana", Preco = 4.7m }
         };
+        
+        public List<ItemsCesta> Lista_natal = new List<ItemsCesta>
+         {
+             new ItemsCesta {Id = 4, Produto = 4, Quantidade = 1 },
+             new ItemsCesta {Id = 5, Produto = 5, Quantidade = 6},
+             new ItemsCesta {Id = 6, Produto = 6, Quantidade = 3},
+             new ItemsCesta {Id = 7, Produto = 7, Quantidade = 7},
+             new ItemsCesta {Id = 8, Produto = 8, Quantidade = 12},
+             new ItemsCesta {Id = 9, Produto = 9, Quantidade = 2},
+             new ItemsCesta {Id = 10, Produto = 10, Quantidade = 10},
+             new ItemsCesta {Id = 11, Produto = 11, Quantidade = 3},
+         };
+
+        public List<ItemsCesta> Lista_pais = new List<ItemsCesta>
+             {
+                 new ItemsCesta {Id = 19, Produto = 19, Quantidade = 4},
+                 new ItemsCesta {Id = 2, Produto = 2, Quantidade = 6},
+                 new ItemsCesta {Id = 23, Produto = 23, Quantidade = 8},
+                 new ItemsCesta {Id = 5, Produto = 5, Quantidade = 7},
+             };
+
+        public List<ItemsCesta> Lista_maes = new List<ItemsCesta>
+             {
+                 new ItemsCesta {Id = 21, Produto = 21, Quantidade = 8},
+                 new ItemsCesta {Id = 22, Produto = 22, Quantidade = 4},
+                 new ItemsCesta {Id = 23, Produto = 23, Quantidade = 28},
+                 new ItemsCesta {Id = 24, Produto = 24, Quantidade = 4},
+                 new ItemsCesta {Id = 25, Produto = 25, Quantidade = 9},
+                 new ItemsCesta {Id = 26, Produto = 26, Quantidade = 3},
+                 new ItemsCesta {Id = 27, Produto = 27, Quantidade = 5},
+                 new ItemsCesta {Id = 28, Produto = 28, Quantidade = 3},
+             };
+
+             public List<ItemsCesta> Lista_namorados = new List<ItemsCesta>
+             {
+                 new ItemsCesta {Id = 19, Produto = 19, Quantidade = 4},
+                 new ItemsCesta {Id = 20, Produto = 20, Quantidade = 6},
+                 new ItemsCesta {Id = 21, Produto = 21, Quantidade = 8},
+                 new ItemsCesta {Id = 22, Produto = 22, Quantidade = 3},
+                 new ItemsCesta {Id = 23, Produto = 23, Quantidade = 2},
+                 new ItemsCesta {Id = 24, Produto = 24, Quantidade = 4},
+             };
+
+             public List<ItemsCesta> Lista_aniversario = new List<ItemsCesta>
+             {
+                 new ItemsCesta {Id = 1, Produto = 1, Quantidade = 2},
+                 new ItemsCesta {Id = 2, Produto = 2, Quantidade = 4},
+                 new ItemsCesta {Id = 3, Produto = 3, Quantidade = 3},
+                 new ItemsCesta {Id = 4, Produto = 4, Quantidade = 5},
+                 new ItemsCesta {Id = 5, Produto = 5, Quantidade = 6},
+                 new ItemsCesta {Id = 6, Produto = 6, Quantidade = 6},
+                 new ItemsCesta {Id = 7, Produto = 7, Quantidade = 8},
+                 new ItemsCesta {Id = 8, Produto = 8, Quantidade = 6},
+                 new ItemsCesta {Id = 9, Produto = 9, Quantidade = 7}
+             };
+             
+             
 
     }
 }
