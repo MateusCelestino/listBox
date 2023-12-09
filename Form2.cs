@@ -1,68 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace listBox
 {
     public partial class Form2 : Form
     {
-        List<Produto> lista_produtos = new List<Produto>
-        {
-            new Produto { Id = 1, Nome = "Chocolate", Preco = 19.9m },
-            new Produto { Id = 2, Nome = "Vinho", Preco = 29.5m },
-            new Produto { Id = 3, Nome = "Flores", Preco = 15.0m },
-            new Produto { Id = 4, Nome = "Cartão de Aniversário", Preco = 5.99m },
-            new Produto { Id = 5, Nome = "Cesta de Frutas", Preco = 25.0m },
-            new Produto { Id = 6, Nome = "Perfume", Preco = 49.99m },
-            new Produto { Id = 7, Nome = "Caneca Personalizada", Preco = 12.5m },
-            new Produto { Id = 8, Nome = "Bolo Decorado", Preco = 34.99m },
-            new Produto { Id = 9, Nome = "Chá Especial", Preco = 9.0m },
-            new Produto { Id = 10, Nome = "Kit de Velas Perfumadas", Preco = 18.75m },
-            new Produto { Id = 11, Nome = "Livro de Poesias", Preco = 22.8m },
-            new Produto { Id = 12, Nome = "Bouquet de Balões", Preco = 8.5m },
-            new Produto { Id = 13, Nome = "Kit de Massagem", Preco = 42.0m },
-            new Produto { Id = 14, Nome = "Caneta de Luxo", Preco = 30.25m },
-            new Produto { Id = 15, Nome = "Café Gourmet", Preco = 14.99m },
-            new Produto { Id = 16, Nome = "Kit de Maquiagem", Preco = 55.0m },
-            new Produto { Id = 17, Nome = "Almofada Personalizada", Preco = 16.5m },
-            new Produto { Id = 18, Nome = "Queijo Especial", Preco = 27.75m },
-            new Produto { Id = 19, Nome = "Relógio Decorativo", Preco = 38.0m },
-            new Produto { Id = 20, Nome = "Jogo de Toalhas Bordadas", Preco = 19.0m },
-            new Produto { Id = 21, Nome = "Conjunto de Taças", Preco = 32.5m },
-            new Produto { Id = 22, Nome = "Caixa de Bombons Finos", Preco = 23.49m },
-            new Produto { Id = 23, Nome = "Cesta de Café da Manhã", Preco = 44.99m },
-            new Produto { Id = 24, Nome = "Kit de Plantas Ornamentais", Preco = 28.0m },
-            new Produto { Id = 25, Nome = "Porta-Retrato Personalizado", Preco = 10.0m },
-            new Produto { Id = 26, Nome = "Sabonetes Artesanais", Preco = 13.25m },
-            new Produto { Id = 27, Nome = "Kit de Jogos de Tabuleiro", Preco = 36.75m },
-            new Produto { Id = 28, Nome = "Garrafa de Champagne", Preco = 49.5m },
-            new Produto { Id = 29, Nome = "Kit de Pintura", Preco = 20.99m },
-            new Produto { Id = 30, Nome = "Copo Térmico", Preco = 15.0m }
-        };
+        Listas lista;
         
-        // Executa quando o formulário carrega
         public Form2()
         {
             InitializeComponent();
+            lista = new Listas();
+            
             ConfiguraListView();
             AtualizaItensListView();
-            
         }
+        
         void AtualizaItensListView()
         {
             // Limpa o list view
-            listView1.Items.Clear();
+            lsvProdutos.Items.Clear();
+            lsvCestaMontada.Items.Clear();
+            
 
             // Percorre cada item adicionado dentro do listView
-            foreach (Produto produto in lista_produtos)
+            foreach (Produto produto in lista.lista_produtos)
             {
                 AdicionarItemListView(produto);
+            }
+
+            foreach (Produto produto in lista.Lista_cesta)
+            {
+                AdicionarItemListViewCesta(produto);
             }
         }
         void AdicionarItemListView(Produto produto)
@@ -74,7 +43,14 @@ namespace listBox
             item.SubItems.Add(produto.Preco.ToString("c"));
 
             // Adiciona o item na listView
-            listView1.Items.Add(item);
+            lsvProdutos.Items.Add(item);
+        }
+        void AdicionarItemListViewCesta(Produto produto)
+        {
+            ListViewItem item = new ListViewItem(produto.Id.ToString());
+            item.SubItems.Add(produto.Nome);
+            item.SubItems.Add(produto.Preco.ToString("c"));
+            lsvCestaMontada.Items.Add(item);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -82,38 +58,114 @@ namespace listBox
 
         }
 
+        
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            double totalPrice = 0;
-            txtNome.Focus();
-            btnAdicionar.Enabled = false;
-            btnRemover.Enabled = false;
-
-            foreach (ListViewItem outerItem in listView1.Items)
+            foreach (ListViewItem item in lsvProdutos.SelectedItems)
             {
-                ListView innerListView1 = (ListView)outerItem.SubItems[1].Tag;
-            }
+                int id = int.Parse(item.Text);
 
-            foreach (ListViewItem innerListView1 in lsvItens2.SelectedItems)
-            {
-                double price = double.Parse(innerListView1.SubItems[0].Text);
-                totalPrice += price;
+                Produto produto = lista.lista_produtos.Find(prod => prod.Id == id);
+                
+                lista.Lista_cesta.Add(produto);
+                lista.lista_produtos.Add(produto);
+                CalcularCesta(produto);
             }
             
+            
+            
+            btnRemover.Enabled = true;
+            AtualizaItensListView();
+
+            // foreach (ListViewItem outerItem in listView1.SelectedItems)
+            // {
+            //     int id = int.Parse(item.Text);
+            //     Produto produto = lista.lista_produtos.Find(prod => prod.Id == id);
+            //     
+            //     lista.listView1.Add(produto);
+            //     lista.lista_produtos.Remove(produto);
+            //     CalcularCesta(produto);
+            // }
+            //
+            // string CalcularCesta(Produto produto)
+            // {
+            //     decimal somaDosValores = 0;
+            //     foreach (Produto item in lista.listView1)
+            //     {
+            //         somaDosValores += item.Preco;
+            //     }
+            //
+            //     // Atualize o campo textValor com a soma dos valores dos produtos
+            //     return this.CalcularCesta.Text = somaDosValores.ToString("c");
+            // }
+           
+
+            
+            // Pegar o item do lsvProdutos
+            foreach (ListViewItem itemSelecionado in lsvProdutos.SelectedItems)
+            {
+                // Criar um novo item de Cesta
+                var items = new ItemsCesta()
+                {
+                    Id = 1,
+                    Produto = int.Parse(itemSelecionado.Text),
+                    Quantidade = 1
+                };
+                var items2 = new Produto()
+                {
+                    Id = 1,
+                    Nome = Text,
+                    Preco = 0
+                };
+                
+               
+                
+                // Produto é o ID do produto. Você precisa buscar o nome e o valor.
+                // Pode ser criando uma função.
+                
+                
+                
+                // Cria o item do listView
+                ListViewItem listViewItem = new ListViewItem();
+                listViewItem.Text = items.Id.ToString();
+                listViewItem.SubItems.Add(items2.Nome.ToString());
+                listViewItem.SubItems.Add(items.Produto.ToString());
+                listViewItem.SubItems.Add(items.Quantidade.ToString());
+                listViewItem.SubItems.Add(items2.Preco.ToString());
+                // Adicionar ao lsvCestaMontada
+                lsvCestaMontada.Items.Add(listViewItem);
+            }
+
+            
+            
+            // Faz o calculo do valor
 
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listView1.SelectedItems)
+            foreach (ListViewItem item in lsvProdutos.SelectedItems)
             {
                 int id = int.Parse(item.Text);
-                Produto produto = lista_produtos.Find(prod => prod.Id == id);
-                lista_produtos.Remove(produto);
+                Produto produto = lista.lista_produtos.Find(prod => prod.Id == id);
+                lista.lista_produtos.Remove(produto);
+
             }
 
+            
             AtualizaItensListView();
             
+        }
+        string CalcularCesta(Produto produto)
+        {
+            decimal somaDosValores = 0;
+            foreach (Produto item in lista.lista_produtos)
+            {
+                somaDosValores += item.Preco;
+            }
+
+            // Atualize o campo textValor com a soma dos valores dos produtos
+            return textValor2.Text = somaDosValores.ToString("c");
         }
 
         private void btnCategoriasDeCesta_Click(object sender, EventArgs e)
@@ -129,32 +181,26 @@ namespace listBox
             this.Hide();
             form2.Show();
         }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            ConfiguraListView();
-        }
+        
         void ConfiguraListView()
         {
-            listView1.View = View.Details;
-            listView1.Columns.Add("ID");
-            listView1.Columns.Add("Nome");
-            listView1.Columns.Add("Preço");           
+            lsvProdutos.View = View.Details;
+            lsvProdutos.Columns.Add("ID");
+            lsvProdutos.Columns.Add("Nome");
+            lsvProdutos.Columns.Add("Preço");
             
-            lsvItens2.View = View.Details;
-            lsvItens2.Columns.Add("ID");
-            lsvItens2.Columns.Add("Nome");
-            lsvItens2.Columns.Add("Preço");           
+            lsvCestaMontada.View = View.Details;
+            lsvCestaMontada.Columns.Add("ID");
+            lsvCestaMontada.Columns.Add("Nome");
+            lsvCestaMontada.Columns.Add("Produto");
+            lsvCestaMontada.Columns.Add("Quantidade");
+            lsvCestaMontada.Columns.Add("Valor");
+            
         }
 
         private void lsvItens_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

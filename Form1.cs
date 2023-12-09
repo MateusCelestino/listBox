@@ -11,13 +11,6 @@ using System.Windows.Forms;
 
 namespace listBox
 {
-    struct Produto
-    {
-        public int Id;
-        public string Nome;
-        public decimal Preco;
-    }
-
     public partial class Form1 : Form
     {
         Listas lista;
